@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
-import pip.download
+try:  # pip >= 10
+    from pip._internal.download import PipSession
+except ImportError:  # pip <= 9.0.3
+    from pip.download import PipSession
 from pip.req import parse_requirements
 from setuptools import setup
 
